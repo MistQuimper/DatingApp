@@ -2,20 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Extensions;
+using API.Entities;
 
-namespace API.Entities
+namespace API.DTOs
 {
-    public class AppUser
+    public class MemberDto
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
+         public int Id { get; set; }
+        public string Username { get; set; }
         
-        public byte[] PasswordHash { get; set; }
-
-        public byte[] PasswordSalt { get; set; }
-
-        public DateTime DateOfBirth { get; set; }
+        public string PhotoUrl { get; set; }
+        public int Age { get; set; }
 
         public string KnownAs { get; set; }
 
@@ -46,14 +43,15 @@ namespace API.Entities
         to solve the problem shape the data
         before returning it, and to do so
         we will use a DTO.
+        Instead of returning an AppUser
+        from our method what we need to return
+        from our usersController is our 
+        memberDto instead of the AppUser
+        We are going to look at a utility 
+        to help MAP one property from the 
+        other and that is called AutoMapper
         */
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<PhotoDto> Photos { get; set; }
 
-        /*
-        public int GetAge()
-        {
-            return DateOfBirth.CalculateAge();
-        }
-        */
     }
 }
